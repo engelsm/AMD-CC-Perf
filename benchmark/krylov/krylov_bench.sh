@@ -3,7 +3,8 @@
 ml tools/numactl/2.0.19-GCCcore-14.2.0
 
 ENV=$1
-BASE_DIR="$HOME/MA-bench-framework"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BASE_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 OUTDIR="$BASE_DIR/outputs/krylov/test/$ENV"
 mkdir -p "$OUTDIR"
 

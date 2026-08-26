@@ -2,11 +2,14 @@
 
 ml tools/numactl/2.0.19-GCCcore-14.2.0
 
-MATRIX_DIR="/home/mengelsl/MA-bench-framework/matrices/spmv"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+
+MATRIX_DIR="$REPO_ROOT/matrices/spmv"
 TEST_FILES=($(ls $MATRIX_DIR/*.bin))
 OUT="itertest.csv"
 
-BINARY="/home/mengelsl/MA-bench-framework/build/spmv"
+BINARY="$REPO_ROOT/build/spmv"
 
 export OMP_PROC_BIND=close
 export OMP_PLACES=cores

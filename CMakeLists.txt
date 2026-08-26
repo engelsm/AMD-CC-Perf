@@ -8,8 +8,19 @@ add_compile_options(-O3 -fopenmp)
 find_package(OpenMP REQUIRED)
 
 set(EXT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external")
-set(GCC_LIB_DIR "/projects/sw/eb/arch/zen4/software/GCCcore/14.2.0/lib/gcc/x86_64-pc-linux-gnu/14.2.0")
-set(STD_LIB_DIR "/projects/sw/eb/arch/zen4/software/GCCcore/14.2.0/lib64")
+
+execute_process(
+    COMMAND ${CMAKE_CXX_COMPILER} -print-file-name=libstdc++.a
+    OUTPUT_VARIABLE STATIC_LIBSTDCXX OUTPUT_STRIP_TRAILING_WHITESPACE)
+execute_process(
+    COMMAND ${CMAKE_CXX_COMPILER} -print-file-name=libgomp.a
+    OUTPUT_VARIABLE STATIC_LIBGOMP OUTPUT_STRIP_TRAILING_WHITESPACE)
+execute_process(
+    COMMAND ${CMAKE_CXX_COMPILER} -print-file-name=libgcc.a
+    OUTPUT_VARIABLE STATIC_LIBGCC OUTPUT_STRIP_TRAILING_WHITESPACE)
+execute_process(
+    COMMAND ${CMAKE_CXX_COMPILER} -print-file-name=libgcc_eh.a
+    OUTPUT_VARIABLE STATIC_LIBGCC_EH OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 # --- Static System Library Linking Configuration ---
 # 1. --start-group/--end-group: Forces the linker to recursively scan enclosed 
@@ -24,8 +35,8 @@ set(STD_LIB_DIR "/projects/sw/eb/arch/zen4/software/GCCcore/14.2.0/lib64")
 #    and the dynamic linking interface.
 set(STATIC_LIBS
     "-Wl,--start-group"
-    "${STD_LIB_DIR}/libstdc++.a" "${STD_LIB_DIR}/libgomp.a"
-    "${GCC_LIB_DIR}/libgcc.a" "${GCC_LIB_DIR}/libgcc_eh.a"
+    "${STATIC_LIBSTDCXX}" "${STATIC_LIBGOMP}"
+    "${STATIC_LIBGCC}" "${STATIC_LIBGCC_EH}"
     "-Wl,-Bstatic" "m" "-Wl,-Bdynamic"
     "-Wl,--end-group" "pthread" "c" "dl"
 )

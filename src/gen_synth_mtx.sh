@@ -5,6 +5,9 @@
 
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
 MATRIX_PATH=$1
 mkdir -p "$MATRIX_PATH"
 
@@ -21,7 +24,7 @@ for N in "${N_VALUES[@]}"; do
         echo "Generating: N=$N | Randomness=$R"
         echo "Target Path: $FILENAME"
         
-        /home/mengelsl/MA-bench-framework/build/synthgen "$N" "$NNZ_PER_ROW" "$R" "$FILENAME"
+        "$REPO_ROOT/build/synthgen" "$N" "$NNZ_PER_ROW" "$R" "$FILENAME"
     done
 done
 

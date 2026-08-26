@@ -65,6 +65,12 @@ src/
 
 ### Prerequisites
 
+Check out the external dependencies (git submodules).
+
+```bash
+git submodule update --init --recursive
+```
+
 Apply the patch to Eigen for profiling.
 
 ```bash
@@ -74,6 +80,7 @@ git -C external/eigen apply ../../eigen_bench.patch
 Build the project.
 
 ```bash
+cmake -S . -B build
 cmake --build build -j
 ```
 

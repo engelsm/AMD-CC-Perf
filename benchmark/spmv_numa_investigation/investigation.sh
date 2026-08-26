@@ -26,7 +26,8 @@ ml tools/numactl/2.0.19-GCCcore-14.2.0
 
 ENV=$1
 
-BASE_DIR="$HOME/MA-bench-framework"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BASE_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 MATRIX_DIR="$BASE_DIR/matrices/spmv"
 BINARIES=("$BASE_DIR/build/spmv" "$BASE_DIR/build/spmv_DYNAMIC")
 

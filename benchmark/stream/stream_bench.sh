@@ -2,6 +2,9 @@
 
 ml tools/numactl/2.0.19-GCCcore-14.2.0
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+
 CSV_FILE="stream_out.csv"
 THREADS_LIST=(48)
 
@@ -16,7 +19,7 @@ for N in "${THREADS_LIST[@]}"; do
     
    export OMP_NUM_THREADS=$N
     
-   OUT=$(setarch $(uname -m) -R numactl -C 0-$((N - 1)) --membind=0,1 /home/mengelsl/MA-bench-framework/build/stream)
+   OUT=$(setarch $(uname -m) -R numactl -C 0-$((N - 1)) --membind=0,1 "$REPO_ROOT/build/stream")
 
     echo "$OUT" | awk -F'[[:space:]]+' -v threads="$N" -v env="$ENV" '
         /Copy:|Scale:|Add:|Triad:/ {

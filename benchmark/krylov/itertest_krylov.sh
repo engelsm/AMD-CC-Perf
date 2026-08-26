@@ -2,10 +2,13 @@
 
 ml tools/numactl/2.0.19-GCCcore-14.2.0
 
-BASE_DIR="/home/mengelsl/MA-bench-framework/matrices/binary_spmc"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+
+BASE_DIR="$REPO_ROOT/matrices/binary_spmc"
 SUBDIRS=("symmetric" "unsymmetric")
 OUT="itertest.csv"
-BINARY="/home/mengelsl/MA-bench-framework/build/krylov"
+BINARY="$REPO_ROOT/build/krylov"
 
 export OMP_PROC_BIND=close
 export OMP_PLACES=cores
