@@ -131,7 +131,8 @@ bash spmv_bench.sh <output_file_name>
 Get matrices from the [SuiteSparse Matrix Collection](https://sparse.tamu.edu/):
 
 ```bash
-bash src/get_spmc_mtx.sh <matrix/group>
+cd src
+bash get_spmc_mtx.sh <matrix/group>
 ```
 
 This downloads the `.mtx` file and converts it to `.bin`. Move the `.bin` manually to:
@@ -147,9 +148,11 @@ The matrices used in the analysis are:
 |---|---|
 | GHS_indef/dawson5 | Shen/e40r0100 |
 | AMD/G3_circuit | Martin/marine1 |
-| ND/nd_12k | Freescale/Freescale1 |
+| ND/nd12k | Freescale/Freescale1 |
 | Janna/Hook_1498 | Fluorem/RM07R |
 | Janna/Bump_2911 | VLSI/vas_stokes_4M |
+
+To run the analysis notebook without errors rename Bump_2911 to Bump_2911. The name apparently changed over time.
 
 #### 2a. Run with the existing bench plan
 
