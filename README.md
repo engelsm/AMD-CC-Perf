@@ -77,7 +77,7 @@ Apply the patch to Eigen for profiling.
 git -C external/eigen apply ../../eigen_bench.patch
 ```
 
-Build the project.
+Build the project. Most binaries are statically linked, so the required static libraries must be available on the build machine.
 
 ```bash
 cmake -S . -B build
