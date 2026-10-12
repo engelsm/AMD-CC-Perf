@@ -30,10 +30,10 @@ MODE_ORDER_2 = ["SME", "SME+SEV"]
 
 def apply_style():
     """Apply the shared style once at the top of each notebook."""
-    sns.set_theme(style="white", font="TeX Gyre Pagella")
+    sns.set_theme(style="white", font="Latin Modern Roman")
     plt.rcParams.update({
         "font.family": "serif",
-        "font.serif": ["TeX Gyre Pagella"],
+        "font.serif": ["Latin Modern Roman"],
         "font.size": 8,
         "axes.titlesize": 8,
         "axes.labelsize": 8,
