@@ -13,9 +13,13 @@ import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# --- Layout geometry (acmart sigconf) ---------------------------------------
-COLW = 3.35      # single-column figure width (inches)
-TEXTW = 7.0      # full text width for figure* (inches)
+# --- Layout geometry (OASICS oasics-v2021, one column) ----------------------
+# \textwidth = 140 mm (oasics-v2021.cls:238); \columnwidth == \textwidth here.
+# Figures are included at \columnwidth, so drawing them at exactly this width
+# keeps the scale factor at 1 and the font sizes as set in apply_style().
+PAPER_W = 140 / 25.4   # 5.512 in
+COLW = PAPER_W         # width used for paper figures
+TEXTW = PAPER_W        # same: the paper has no two-column layout
 
 # --- Colorblind-safe palette (Okabe-Ito) -------------------------------------
 NATIVE = "#009E73"  # green
